@@ -13,7 +13,25 @@
 
 ## 📋 Tentang Project
 
-SPK Penilaian Kinerja Karyawan adalah sistem berbasis web yang dirancang untuk membantu perusahaan dalam melakukan evaluasi dan penilaian kinerja karyawan secara objektif dan terstruktur. Sistem ini menggunakan metode pengambilan keputusan yang dapat membantu HR dalam menentukan ranking kinerja karyawan berdasarkan kriteria-kriteria yang telah ditetapkan.
+SPK Penilaian Kinerja Karyawan adalah sistem berbasis web yang dirancang untuk membantu perusahaan melakukan evaluasi dan penilaian kinerja karyawan secara objektif, terstruktur, dan transparan. Sistem ini menggunakan metode pengambilan keputusan berbasis kriteria (SAW) untuk menghasilkan ranking kinerja karyawan yang adil dan terukur.
+
+### 🔥 Status Terbaru
+- Dashboard sudah **dinamis, modern, dan informatif**: menampilkan ringkasan karyawan, periode penilaian, top performer, distribusi kategori kinerja (pie chart), dan aktivitas terakhir.
+- Halaman hasil penilaian (ranking) sudah terintegrasi dengan perhitungan SAW dan breakdown detail.
+- Workflow utama: input kriteria → penilaian karyawan → proses SAW → tampilkan hasil dan dashboard.
+
+### 🖥️ Fitur Dashboard
+- **Summary Karyawan**: total, aktif, nonaktif
+- **Summary Periode Penilaian**: draft, aktif, selesai
+- **Periode Selesai Terakhir**: statistik karyawan dinilai dan kriteria
+- **Top 3 Performer**: ranking karyawan terbaik periode terakhir
+- **Distribusi Kinerja**: pie chart kategori (Excellent, Very Good, dst)
+- **Aktivitas Terbaru**: audit log penilaian dan perubahan sistem
+
+### 📝 Catatan Troubleshooting
+- Jika migrasi gagal, coba `php artisan migrate:fresh --seed`
+- Jika tampilan error/berantakan, jalankan `php artisan cache:clear` dan `php artisan config:clear`
+- Untuk pengembangan frontend, pastikan sudah menjalankan `php artisan storage:link` agar foto karyawan tampil
 
 ### ✨ Fitur Utama
 - 📊 Dashboard analitik kinerja karyawan
