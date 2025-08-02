@@ -102,18 +102,6 @@ php artisan db:seed --class=DataSeeder
 php artisan storage:link
 ```
 
-### 8️⃣ Install & Compile Assets (Opsional)
-```bash
-# Install NPM dependencies
-npm install
-
-# Compile assets untuk development
-npm run dev
-
-# Atau compile untuk production
-npm run build
-```
-
 ### 9️⃣ Jalankan Aplikasi
 ```bash
 php artisan serve
