@@ -1,66 +1,187 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# SPK Penilaian Kinerja Karyawan
 
 <p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+  <img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="200" alt="Laravel Logo">
 </p>
 
-## About Laravel
+<p align="center">
+  <strong>Sistem Pendukung Keputusan (SPK) untuk Penilaian Kinerja Karyawan</strong><br>
+  Dibangun dengan Laravel 10 & PostgreSQL
+</p>
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+---
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## 📋 Tentang Project
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+SPK Penilaian Kinerja Karyawan adalah sistem berbasis web yang dirancang untuk membantu perusahaan dalam melakukan evaluasi dan penilaian kinerja karyawan secara objektif dan terstruktur. Sistem ini menggunakan metode pengambilan keputusan yang dapat membantu HR dalam menentukan ranking kinerja karyawan berdasarkan kriteria-kriteria yang telah ditetapkan.
 
-## Learning Laravel
+### ✨ Fitur Utama
+- 📊 Dashboard analitik kinerja karyawan
+- 👥 Manajemen data karyawan
+- 📝 Sistem penilaian berbasis kriteria
+- 📈 Laporan dan ranking kinerja
+- 🔐 Sistem autentikasi dan autorisasi
+- 📱 Responsive design
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### 🛠️ Teknologi yang Digunakan
+- **Backend:** Laravel 10
+- **Database:** PostgreSQL
+- **Frontend:** Blade Templates, Bootstrap
+- **PHP Version:** ^8.1
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+---
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## 🚀 Instalasi
 
-## Laravel Sponsors
+Ikuti langkah-langkah berikut untuk menginstal dan menjalankan project ini di local environment Anda:
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+### 📋 Prasyarat
+Pastikan Anda telah menginstal:
+- PHP >= 8.1
+- Composer
+- PostgreSQL
+- Git
 
-### Premium Partners
+### 1️⃣ Clone Repository
+```bash
+git clone https://github.com/onicyborg/SPK-Penilaian-Kinerja-Pegawai.git
+cd SPK-Penilaian-Kinerja-Pegawai
+```
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+### 2️⃣ Install Dependencies
+```bash
+composer install
+```
 
-## Contributing
+### 3️⃣ Setup Environment
+```bash
+# Copy file environment
+cp .env.example .env
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+# Generate application key
+php artisan key:generate
+```
 
-## Code of Conduct
+### 4️⃣ Konfigurasi Database
+Buka file `.env` dan sesuaikan konfigurasi database:
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+```env
+DB_CONNECTION=pgsql
+DB_HOST=127.0.0.1
+DB_PORT=5432
+DB_DATABASE=spk_penilaian_kinerja_karyawan
+DB_USERNAME=your_username
+DB_PASSWORD=your_password
+```
 
-## Security Vulnerabilities
+### 5️⃣ Buat Database
+Buat database PostgreSQL dengan nama `spk_penilaian_kinerja_karyawan`:
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+```sql
+-- Login ke PostgreSQL sebagai superuser
+psql -U postgres
 
-## License
+-- Buat database
+CREATE DATABASE spk_penilaian_kinerja_karyawan;
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+-- Keluar dari psql
+\q
+```
+
+### 6️⃣ Migrasi Database
+```bash
+# Jalankan migrasi
+php artisan migrate
+
+# Jalankan seeder (jika tersedia)
+php artisan db:seed --class=DataSeeder
+```
+
+### 7️⃣ Setup Storage Link
+```bash
+php artisan storage:link
+```
+
+### 8️⃣ Install & Compile Assets (Opsional)
+```bash
+# Install NPM dependencies
+npm install
+
+# Compile assets untuk development
+npm run dev
+
+# Atau compile untuk production
+npm run build
+```
+
+### 9️⃣ Jalankan Aplikasi
+```bash
+php artisan serve
+```
+
+Aplikasi akan berjalan di `http://localhost:8000`
+
+---
+
+## 🔧 Konfigurasi Tambahan
+
+### Cache Configuration
+```bash
+# Clear cache
+php artisan cache:clear
+php artisan config:clear
+php artisan route:clear
+php artisan view:clear
+
+# Optimize untuk production
+php artisan config:cache
+php artisan route:cache
+php artisan view:cache
+```
+
+### File Permissions (Linux/Mac)
+```bash
+sudo chmod -R 775 storage bootstrap/cache
+sudo chown -R www-data:www-data storage bootstrap/cache
+```
+
+---
+
+## 📚 Dokumentasi
+
+### Struktur Database
+- `users` - Data pengguna sistem
+- `employees` - Data karyawan
+- `criteria` - Kriteria penilaian
+- `assessments` - Data penilaian kinerja
+- `periods` - Periode penilaian
+
+### API Endpoints
+Dokumentasi API akan tersedia setelah implementasi lengkap.
+
+---
+
+## 🤝 Kontribusi
+
+Kami menerima kontribusi dari siapa saja! Silakan:
+1. Fork repository ini
+2. Buat branch fitur baru (`git checkout -b feature/AmazingFeature`)
+3. Commit perubahan (`git commit -m 'Add some AmazingFeature'`)
+4. Push ke branch (`git push origin feature/AmazingFeature`)
+5. Buat Pull Request
+
+---
+
+## 📞 Kontak
+
+Jika Anda memiliki pertanyaan atau saran, silakan hubungi:
+- **Email:** [akhmadfauzy40@gmail.com]
+- **GitHub:** [onicyborg](https://github.com/onicyborg)
+
+---
+
+## 🙏 Acknowledgments
+
+- [Laravel Framework](https://laravel.com)
+- [PostgreSQL](https://postgresql.org)
+- Semua kontributor yang telah membantu pengembangan project ini
