@@ -31,6 +31,8 @@
                                         <th>Nama</th>
                                         <th>Posisi</th>
                                         <th>Departemen</th>
+                                        <th>Jenis Kelamin</th>
+                                        <th>TTL</th>
                                         <th>Hire Date</th>
                                         <th>Phone</th>
                                         <th>Email</th>
@@ -54,9 +56,15 @@
                                             <td>{{ $employee->name }}</td>
                                             <td>{{ $employee->position }}</td>
                                             <td>{{ $employee->department }}</td>
-                                            <td>{{ $employee->gender == 'male' ? 'Laki-laki' : ($employee->gender == 'female' ? 'Perempuan' : '-') }}</td>
-                                            <td>{{ $employee->born_place }}</td>
-                                            <td>{{ $employee->born_date }}</td>
+                                            <td>{{ $employee->gender == 'male' ? 'Laki-laki' : ($employee->gender == 'female' ? 'Perempuan' : '-') }}
+                                            </td>
+                                            <td>
+                                                @if ($employee->born_date && $employee->born_place)
+                                                    {{ $employee->born_place }}, {{ $employee->born_date }}
+                                                @else
+                                                    -
+                                                @endif
+                                            </td>
                                             <td>{{ $employee->hire_date }}</td>
                                             <td>{{ $employee->phone }}</td>
                                             <td>{{ $employee->email }}</td>
@@ -68,10 +76,12 @@
                                                 @endif
                                             </td>
                                             <td>
-                                                <button type="button" class="btn btn-primary btn-sm" onclick="editEmployee('{{ $employee->id }}')">
+                                                <button type="button" class="btn btn-primary btn-sm"
+                                                    onclick="editEmployee('{{ $employee->id }}')">
                                                     <i class="fa fa-edit"></i>
                                                 </button>
-                                                <button type="button" class="btn btn-danger btn-sm" onclick="deleteEmployee('{{ $employee->id }}', '{{ $employee->name }}')">
+                                                <button type="button" class="btn btn-danger btn-sm"
+                                                    onclick="deleteEmployee('{{ $employee->id }}', '{{ $employee->name }}')">
                                                     <i class="fa fa-trash"></i>
                                                 </button>
                                             </td>
@@ -85,6 +95,8 @@
                                         <th>Nama</th>
                                         <th>Posisi</th>
                                         <th>Departemen</th>
+                                        <th>Jenis Kelamin</th>
+                                        <th>TTL</th>
                                         <th>Hire Date</th>
                                         <th>Phone</th>
                                         <th>Email</th>
@@ -184,8 +196,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="hire_date">Tanggal Masuk <span class="text-danger">*</span></label>
-                                    <input type="date" class="form-control" id="hire_date" name="hire_date"
-                                        required>
+                                    <input type="date" class="form-control" id="hire_date" name="hire_date" required>
                                 </div>
                             </div>
                         </div>
@@ -216,7 +227,8 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="photo">Foto</label>
-                                    <input type="file" class="form-control" id="photo" name="photo" accept="image/*">
+                                    <input type="file" class="form-control" id="photo" name="photo"
+                                        accept="image/*">
                                 </div>
                             </div>
                         </div>
@@ -256,7 +268,8 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="edit_position">Posisi <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" id="edit_position" name="position" required>
+                                    <input type="text" class="form-control" id="edit_position" name="position"
+                                        required>
                                 </div>
                             </div>
                         </div>
@@ -274,13 +287,15 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="edit_born_place">Tempat Lahir <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" id="edit_born_place" name="born_place" required>
+                                    <input type="text" class="form-control" id="edit_born_place" name="born_place"
+                                        required>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="edit_born_date">Tanggal Lahir <span class="text-danger">*</span></label>
-                                    <input type="date" class="form-control" id="edit_born_date" name="born_date" required>
+                                    <input type="date" class="form-control" id="edit_born_date" name="born_date"
+                                        required>
                                 </div>
                             </div>
                         </div>
@@ -348,7 +363,8 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="edit_photo">Foto</label>
-                                    <input type="file" class="form-control" id="edit_photo" name="photo" accept="image/*">
+                                    <input type="file" class="form-control" id="edit_photo" name="photo"
+                                        accept="image/*">
                                     <small class="text-muted">Kosongkan jika tidak ingin mengubah foto</small>
                                 </div>
                             </div>
@@ -389,7 +405,7 @@
         function editEmployee(id) {
             // Get employee data via AJAX
             $.ajax({
-                url: '{{ route("master-data-karyawan.get", ":id") }}'.replace(':id', id),
+                url: '{{ route('master-data-karyawan.get', ':id') }}'.replace(':id', id),
                 type: 'GET',
                 success: function(response) {
                     // Populate form fields
@@ -462,7 +478,7 @@
             var employeeId = $('#edit_employee_id').val();
 
             $.ajax({
-                url: '{{ route("master-data-karyawan.update", ":id") }}'.replace(':id', employeeId),
+                url: '{{ route('master-data-karyawan.update', ':id') }}'.replace(':id', employeeId),
                 type: 'POST',
                 data: formData,
                 processData: false,
