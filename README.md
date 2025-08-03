@@ -238,14 +238,14 @@ Misal ada 3 karyawan (A, B, C) dan 2 kriteria:
 
 **Langkah 1: Normalisasi**
 - Nilai maksimum K1 = 90, K2 = 80
-- Normalisasi A: R_A1 = 80/90 = 0.89, R_A2 = 70/80 = 0.88
-- Normalisasi B: R_B1 = 90/90 = 1.00, R_B2 = 80/80 = 1.00
-- Normalisasi C: R_C1 = 70/90 = 0.78, R_C2 = 60/80 = 0.75
+- Normalisasi A: $R_A1 = 80/90 = 0.89$, $R_A2 = 70/80 = 0.88$
+- Normalisasi B: $R_B1 = 90/90 = 1.00$, $R_B2 = 80/80 = 1.00$
+- Normalisasi C: $R_C1 = 70/90 = 0.78$, $R_C2 = 60/80 = 0.75$
 
 **Langkah 2: Hitung Skor Akhir**
-- Skor A = (0.6 × 0.89) + (0.4 × 0.88) = 0.534 + 0.352 = **0.886**
-- Skor B = (0.6 × 1.00) + (0.4 × 1.00) = 0.6 + 0.4 = **1.00**
-- Skor C = (0.6 × 0.78) + (0.4 × 0.75) = 0.468 + 0.3 = **0.768**
+- Skor A = $(0.6 \times 0.89) + (0.4 \times 0.88) = 0.534 + 0.352 = **0.886**$
+- Skor B = $(0.6 \times 1.00) + (0.4 \times 1.00) = 0.6 + 0.4 = **1.00**$
+- Skor C = $(0.6 \times 0.78) + (0.4 \times 0.75) = 0.468 + 0.3 = **0.768**$
 
 **Ranking:**
 1. B (1.00)
