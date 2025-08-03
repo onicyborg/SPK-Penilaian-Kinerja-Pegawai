@@ -35,8 +35,8 @@
                                         <td>{{ $user->username }}</td>
                                         <td>{{ $user->email }}</td>
                                         <td>
-                                            <button class="btn btn-sm btn-info btn-edit" data-id="{{ $user->id }}" data-name="{{ $user->name }}" data-email="{{ $user->email }}" data-username="{{ $user->username }}">Edit</button>
-                                            <button class="btn btn-sm btn-danger btn-delete" data-id="{{ $user->id }}">Delete</button>
+                                            <button class="btn btn-sm btn-info btn-edit" data-id="{{ $user->id }}" data-name="{{ $user->name }}" data-email="{{ $user->email }}" data-username="{{ $user->username }}"><i class="fa fa-edit"></i></button>
+                                            <button class="btn btn-sm btn-danger btn-delete" data-id="{{ $user->id }}"><i class="fa fa-trash"></i></button>
                                         </td>
                                     </tr>
                                 @endforeach

@@ -417,6 +417,10 @@
                     $('#edit_name').val(response.name);
                     $('#edit_position').val(response.position);
                     $('#edit_department').val(response.department);
+                    $('#edit_gender').val(response.gender);
+                    $('#edit_born_place').val(response.born_place);
+                    var bornDate = new Date(response.born_date);
+                    $('#edit_born_date').val(bornDate.toISOString().slice(0, 10));
                     var hireDate = new Date(response.hire_date);
                     $('#edit_hire_date').val(hireDate.toISOString().slice(0, 10));
                     $('#edit_phone').val(response.phone);
