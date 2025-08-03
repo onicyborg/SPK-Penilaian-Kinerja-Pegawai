@@ -191,3 +191,67 @@ Jika Anda memiliki pertanyaan atau saran, silakan hubungi:
 - [Laravel Framework](https://laravel.com)
 - [PostgreSQL](https://postgresql.org)
 - Semua kontributor yang telah membantu pengembangan project ini
+
+---
+
+## 📐 Rumus dan Contoh Perhitungan Metode SAW
+
+Aplikasi ini menggunakan metode Simple Additive Weighting (SAW) untuk menentukan ranking kinerja karyawan berdasarkan nilai penilaian dan bobot kriteria.
+
+### 1. Normalisasi Matriks Penilaian
+Setiap nilai penilaian karyawan untuk kriteria tertentu dinormalisasi dengan rumus:
+
+```
+R_{ij} = \frac{X_{ij}}{X_{j}^{max}}
+```
+- $R_{ij}$ = nilai normalisasi untuk karyawan ke-$i$ pada kriteria ke-$j$
+- $X_{ij}$ = nilai asli karyawan ke-$i$ pada kriteria ke-$j$
+- $X_{j}^{max}$ = nilai maksimum seluruh karyawan pada kriteria ke-$j$
+
+### 2. Hitung Skor Akhir
+Setelah normalisasi, skor akhir setiap karyawan dihitung dengan menjumlahkan hasil normalisasi yang dikalikan bobot masing-masing kriteria:
+
+```
+S_i = \sum_{j=1}^{n} (w_j \times R_{ij})
+```
+- $S_i$ = skor akhir karyawan ke-$i$
+- $w_j$ = bobot kriteria ke-$j$ (dalam desimal, misal 40% = 0.4)
+- $R_{ij}$ = nilai normalisasi karyawan ke-$i$ pada kriteria ke-$j$
+- $n$ = jumlah kriteria
+
+### 3. Ranking
+Karyawan diurutkan berdasarkan skor akhir $S_i$ secara menurun. Skor tertinggi mendapat peringkat pertama.
+
+---
+
+### Contoh Perhitungan SAW
+
+Misal ada 3 karyawan (A, B, C) dan 2 kriteria:
+- Kriteria 1 (K1), bobot 60%
+- Kriteria 2 (K2), bobot 40%
+
+| Karyawan | Nilai K1 | Nilai K2 |
+|----------|----------|----------|
+| A        |   80     |   70     |
+| B        |   90     |   80     |
+| C        |   70     |   60     |
+
+**Langkah 1: Normalisasi**
+- Nilai maksimum K1 = 90, K2 = 80
+- Normalisasi A: R_A1 = 80/90 = 0.89, R_A2 = 70/80 = 0.88
+- Normalisasi B: R_B1 = 90/90 = 1.00, R_B2 = 80/80 = 1.00
+- Normalisasi C: R_C1 = 70/90 = 0.78, R_C2 = 60/80 = 0.75
+
+**Langkah 2: Hitung Skor Akhir**
+- Skor A = (0.6 × 0.89) + (0.4 × 0.88) = 0.534 + 0.352 = **0.886**
+- Skor B = (0.6 × 1.00) + (0.4 × 1.00) = 0.6 + 0.4 = **1.00**
+- Skor C = (0.6 × 0.78) + (0.4 × 0.75) = 0.468 + 0.3 = **0.768**
+
+**Ranking:**
+1. B (1.00)
+2. A (0.886)
+3. C (0.768)
+
+---
+
+Dengan metode ini, penilaian kinerja menjadi objektif dan transparan sesuai bobot dan nilai yang diberikan.
