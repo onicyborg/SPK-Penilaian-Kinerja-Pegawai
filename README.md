@@ -204,9 +204,9 @@ Setiap nilai penilaian karyawan untuk kriteria tertentu dinormalisasi dengan rum
 
 $R_{ij} = \frac{X_{ij}}{X_{j}^{max}}$
 
-- $R_{ij}$ = nilai normalisasi untuk karyawan ke-$i$ pada kriteria ke-$j$
-- $X_{ij}$ = nilai asli karyawan ke-$i$ pada kriteria ke-$j$
-- $X_{j}^{max}$ = nilai maksimum seluruh karyawan pada kriteria ke-$j$
+- $R_{ij}$ = nilai normalisasi untuk karyawan ke- $i$ pada kriteria ke- $j$
+- $X_{ij}$ = nilai asli karyawan ke- $i$ pada kriteria ke- $j$
+- $X_{j}^{max}$ = nilai maksimum seluruh karyawan pada kriteria ke- $j$
 
 ### 2. Hitung Skor Akhir
 Setelah normalisasi, skor akhir setiap karyawan dihitung dengan menjumlahkan hasil normalisasi yang dikalikan bobot masing-masing kriteria:
