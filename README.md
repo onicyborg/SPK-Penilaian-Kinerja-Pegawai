@@ -165,8 +165,9 @@ sudo chown -R www-data:www-data storage bootstrap/cache
 - `users` - Data pengguna sistem
 - `employees` - Data karyawan
 - `criteria` - Kriteria penilaian
-- `assessments` - Data penilaian kinerja
-- `periods` - Periode penilaian
+- `assessment_periods` - Periode penilaian
+- `saw_results` - Hasil penilaian kinerja
+- `employee_assessments` - Penilaian karyawan
 
 ### ERD
 ![ERD](https://raw.githubusercontent.com/onicyborg/SPK-Penilaian-Kinerja-Pegawai/main/public/ERD.png)
