@@ -112,7 +112,9 @@ CREATE DATABASE spk_penilaian_kinerja_karyawan;
 php artisan migrate
 
 # Jalankan seeder (jika tersedia)
-php artisan db:seed --class=DataSeeder
+php artisan db:seed UserSeeder
+php artisan db:seed EmployeeSeeder
+
 ```
 
 ### 7️⃣ Setup Storage Link
@@ -125,7 +127,10 @@ php artisan storage:link
 php artisan serve
 ```
 
-Aplikasi akan berjalan di `http://localhost:8000`
+Aplikasi akan berjalan di `http://localhost:8000` anda dapat login menggunakan user bawaan yaitu :
+
+Username : admin
+Password : password123
 
 ---
 
