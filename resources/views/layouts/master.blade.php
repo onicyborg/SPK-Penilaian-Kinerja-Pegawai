@@ -75,13 +75,9 @@
                                     <i class="mdi mdi-account"></i>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right">
-                                    <a href="./app-profile.html" class="dropdown-item">
+                                    <a href="{{ route('profile') }}" class="dropdown-item">
                                         <i class="icon-user"></i>
                                         <span class="ml-2">Profile </span>
-                                    </a>
-                                    <a href="./email-inbox.html" class="dropdown-item">
-                                        <i class="icon-envelope-open"></i>
-                                        <span class="ml-2">Inbox </span>
                                     </a>
                                     <a href="{{ route('logout') }}" class="dropdown-item">
                                         <i class="icon-key"></i>
@@ -113,6 +109,7 @@
                     <li><a href="{{ route('master-data-karyawan') }}" aria-expanded="false"><i
                                 class="mdi mdi-account-multiple"></i><span class="nav-text">Karyawan</span></a>
                     </li>
+                    <li><a href="{{ route('manage-assessor.index') }}" aria-expanded="false"><i class="mdi mdi-account-key"></i><span class="nav-text">Assessor</span></a></li>
 
                     <li class="nav-label">Penilaian Kinerja</li>
                     <li><a href="{{ route('assessment-periode.index') }}" aria-expanded="false"><i

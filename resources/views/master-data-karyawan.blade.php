@@ -1,5 +1,9 @@
 @extends('layouts.master')
 
+@section('title')
+    Master Data Karyawan
+@endsection
+
 @push('styles')
     <!-- DataTables CSS -->
     <link href="{{ asset('vendor/datatables/css/jquery.dataTables.min.css') }}" rel="stylesheet">

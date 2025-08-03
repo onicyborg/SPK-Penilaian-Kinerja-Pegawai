@@ -29,6 +29,11 @@ Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::group(['middleware' => 'auth'],function(){
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
+    // Profile
+    Route::get('profile', [AuthController::class, 'profile'])->name('profile');
+    Route::post('profile/update', [AuthController::class, 'updateProfile'])->name('profile.update');
+    Route::post('profile/update-password', [AuthController::class, 'updatePassword'])->name('profile.update-password');
+
     // Assessment Periode CRUD
     Route::get('assessment-periode', [AssessmentPeriodeController::class, 'index'])->name('assessment-periode.index');
     Route::post('assessment-periode/store', [AssessmentPeriodeController::class, 'store'])->name('assessment-periode.store');
@@ -40,6 +45,13 @@ Route::group(['middleware' => 'auth'],function(){
     Route::get('/master-data-karyawan/{id}', [EmployeesController::class, 'getEmployee'])->name('master-data-karyawan.get');
     Route::put('/master-data-karyawan/{id}', [EmployeesController::class, 'update'])->name('master-data-karyawan.update');
     Route::delete('/master-data-karyawan/{id}', [EmployeesController::class, 'destroy'])->name('master-data-karyawan.delete');
+
+    // CRUD Assessor
+    Route::get('manage-assessor', [\App\Http\Controllers\ManageAssessorController::class, 'index'])->name('manage-assessor.index');
+    Route::get('manage-assessor/data', [\App\Http\Controllers\ManageAssessorController::class, 'data'])->name('manage-assessor.data');
+    Route::post('manage-assessor', [\App\Http\Controllers\ManageAssessorController::class, 'store'])->name('manage-assessor.store');
+    Route::put('manage-assessor/{id}', [\App\Http\Controllers\ManageAssessorController::class, 'update'])->name('manage-assessor.update');
+    Route::delete('manage-assessor/{id}', [\App\Http\Controllers\ManageAssessorController::class, 'destroy'])->name('manage-assessor.destroy');
 
     Route::get('assessment/setting-criteria/{id}', [CriteriaController::class, 'index'])->name('assessment.setting-criteria');
     Route::post('assessment/setting-criteria/{id}', [CriteriaController::class, 'store'])->name('assessment.setting-criteria');

@@ -1,5 +1,9 @@
 @extends('layouts.master')
 
+@section('title')
+    Dashboard
+@endsection
+
 @push('styles')
 @endpush
 
@@ -66,7 +70,7 @@
                                 @foreach ($topPerformers as $performer)
                                     <li class="list-group-item d-flex justify-content-between align-items-center">
                                         <div class="d-flex align-items-center">
-                                            <img src="{{ $performer->employee->photo ? asset('storage/' . $performer->employee->photo) : asset('images/avatar/1.png') }}"
+                                            <img src="{{ $performer->employee->photo ? asset('storage/' . $performer->employee->photo) : asset('images/employee.png') }}"
                                                 class="rounded-circle me-3" width="40" height="40">
                                             <div>
                                                 <div class="fw-bold">{{ $performer->employee->name }}</div>
