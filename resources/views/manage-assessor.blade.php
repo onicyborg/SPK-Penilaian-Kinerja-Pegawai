@@ -20,7 +20,7 @@
                         <table id="assessorTable" class="display table table-bordered" style="width:100%">
                             <thead>
                                 <tr>
-                                    <th>ID</th>
+                                    <th>No</th>
                                     <th>Nama</th>
                                     <th>Username</th>
                                     <th>Email</th>
@@ -30,7 +30,7 @@
                             <tbody>
                                 @foreach($users as $user)
                                     <tr>
-                                        <td>{{ $user->id }}</td>
+                                        <td>{{ $loop->iteration }}</td>
                                         <td>{{ $user->name }}</td>
                                         <td>{{ $user->username }}</td>
                                         <td>{{ $user->email }}</td>

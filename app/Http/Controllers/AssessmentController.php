@@ -21,13 +21,23 @@ class AssessmentController extends Controller
     {
         $periode = AssessmentPeriod::with('criteria')->findOrFail($id);
         $criteria = $periode->criteria;
-        // Ambil semua karyawan, join dengan assessment jika ada
-        $employees = Employee::all()->map(function ($emp) use ($periode) {
-            $emp->assessment = EmployeeAssessment::where('assessment_period_id', $periode->id)
-                ->where('employee_id', $emp->id)
-                ->get();
-            return $emp;
-        });
+        // Ambil semua karyawan, join dengan assessment jika ada (dengan status periode assessment active)
+        if ($periode->status == 'active') {
+            $employees = Employee::where('status', 'active')->get()->map(function ($emp) use ($periode) {
+                $emp->assessment = EmployeeAssessment::where('assessment_period_id', $periode->id)
+                    ->where('employee_id', $emp->id)
+                    ->get();
+                return $emp;
+            });
+        }else{
+            //ambil data employee nya dari saw_result
+            $employees = Employee::all()->map(function ($emp) use ($periode) {
+                $emp->assessment = SawResult::where('assessment_period_id', $periode->id)
+                    ->where('employee_id', $emp->id)
+                    ->get();
+                return $emp;
+            });
+        }
         return view('assessment.assessment-employee', compact('periode', 'criteria', 'employees'));
     }
 

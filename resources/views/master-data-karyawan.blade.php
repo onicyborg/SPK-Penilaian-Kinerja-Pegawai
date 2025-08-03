@@ -30,7 +30,6 @@
                             <table id="masterEmployee" class="display" style="width:100%">
                                 <thead>
                                     <tr>
-                                        <th>No</th>
                                         <th>Photo</th>
                                         <th>Nama</th>
                                         <th>Posisi</th>
@@ -47,7 +46,6 @@
                                 <tbody>
                                     @foreach ($employees as $employee)
                                         <tr>
-                                            <td>{{ $loop->iteration }}</td>
                                             <td>
                                                 @if ($employee->photo != null)
                                                     <img src="{{ asset('storage/' . $employee->photo) }}" alt="Photo"
@@ -64,7 +62,7 @@
                                             </td>
                                             <td>
                                                 @if ($employee->born_date && $employee->born_place)
-                                                    {{ $employee->born_place }}, {{ $employee->born_date }}
+                                                    {{ $employee->born_place }}, {{ \Carbon\Carbon::parse($employee->born_date)->format('d-m-Y') }}
                                                 @else
                                                     -
                                                 @endif
@@ -94,7 +92,6 @@
                                 </tbody>
                                 <tfoot>
                                     <tr>
-                                        <th>No</th>
                                         <th>Photo</th>
                                         <th>Nama</th>
                                         <th>Posisi</th>
