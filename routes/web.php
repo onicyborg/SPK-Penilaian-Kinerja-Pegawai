@@ -53,4 +53,5 @@ Route::group(['middleware' => 'auth'],function(){
     Route::post('assessment/store/{id}/saw', [AssessmentController::class, 'processSAW'])->name('assessment.store.saw');
 
     Route::get('assessment/results/{id}', [AssessmentResultController::class, 'results'])->name('assessment.results');
+    Route::get('assessment/logs/{id}', [\App\Http\Controllers\AssessmentLogsController::class, 'index'])->name('assessment.logs');
 });

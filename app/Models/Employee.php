@@ -29,6 +29,9 @@ class Employee extends Model
         'email',
         'status',
         'photo',
+        'gender',
+        'born_place',
+        'born_date',
     ];
 
     /**
@@ -38,6 +41,7 @@ class Employee extends Model
      */
     protected $casts = [
         'hire_date' => 'date',
+        'born_date' => 'date',
     ];
 
     /**

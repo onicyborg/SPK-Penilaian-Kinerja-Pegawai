@@ -54,6 +54,9 @@
                                             <td>{{ $employee->name }}</td>
                                             <td>{{ $employee->position }}</td>
                                             <td>{{ $employee->department }}</td>
+                                            <td>{{ $employee->gender == 'male' ? 'Laki-laki' : ($employee->gender == 'female' ? 'Perempuan' : '-') }}</td>
+                                            <td>{{ $employee->born_place }}</td>
+                                            <td>{{ $employee->born_date }}</td>
                                             <td>{{ $employee->hire_date }}</td>
                                             <td>{{ $employee->phone }}</td>
                                             <td>{{ $employee->email }}</td>
@@ -122,6 +125,30 @@
                                 <div class="form-group">
                                     <label for="position">Posisi <span class="text-danger">*</span></label>
                                     <input type="text" class="form-control" id="position" name="position" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="gender">Gender <span class="text-danger">*</span></label>
+                                    <select class="form-control" id="gender" name="gender" required>
+                                        <option value="">Pilih Gender</option>
+                                        <option value="male">Laki-laki</option>
+                                        <option value="female">Perempuan</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="born_place">Tempat Lahir <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" id="born_place" name="born_place" required>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="born_date">Tanggal Lahir <span class="text-danger">*</span></label>
+                                    <input type="date" class="form-control" id="born_date" name="born_date" required>
                                 </div>
                             </div>
                         </div>
@@ -229,8 +256,31 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="edit_position">Posisi <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" id="edit_position" name="position"
-                                        required>
+                                    <input type="text" class="form-control" id="edit_position" name="position" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="edit_gender">Gender <span class="text-danger">*</span></label>
+                                    <select class="form-control" id="edit_gender" name="gender" required>
+                                        <option value="">Pilih Gender</option>
+                                        <option value="male">Laki-laki</option>
+                                        <option value="female">Perempuan</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="edit_born_place">Tempat Lahir <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" id="edit_born_place" name="born_place" required>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="edit_born_date">Tanggal Lahir <span class="text-danger">*</span></label>
+                                    <input type="date" class="form-control" id="edit_born_date" name="born_date" required>
                                 </div>
                             </div>
                         </div>

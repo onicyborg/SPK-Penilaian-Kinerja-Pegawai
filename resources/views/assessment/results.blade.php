@@ -23,6 +23,9 @@
                         <a class="nav-link active" href="{{ route('assessment.results', $periode->id) }}">Assessment
                             Results</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('assessment.logs', $periode->id) }}">Assessment Logs</a>
+                    </li>
                 </ul>
             </div>
         </div>

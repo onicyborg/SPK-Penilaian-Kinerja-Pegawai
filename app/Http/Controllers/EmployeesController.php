@@ -26,6 +26,9 @@ class EmployeesController extends Controller
             'email' => 'required|email',
             'status' => 'required',
             'photo' => 'required|image|max:2048',
+            'gender' => 'required|in:male,female',
+            'born_place' => 'required',
+            'born_date' => 'required|date',
         ]);
 
         $photo = $request->file('photo');
@@ -41,6 +44,9 @@ class EmployeesController extends Controller
             'email' => $request->email,
             'status' => $request->status,
             'photo' => $photoName,
+            'gender' => $request->gender,
+            'born_place' => $request->born_place,
+            'born_date' => $request->born_date,
         ]);
 
         return redirect()->route('master-data-karyawan')->with('success', 'Employee created successfully.');
@@ -57,6 +63,9 @@ class EmployeesController extends Controller
             'email' => 'required|email',
             'status' => 'required',
             'photo' => 'nullable|image|max:2048',
+            'gender' => 'required|in:male,female',
+            'born_place' => 'required',
+            'born_date' => 'required|date',
         ]);
 
         $employee = Employee::findOrFail($id);
@@ -69,6 +78,9 @@ class EmployeesController extends Controller
             'phone' => $request->phone,
             'email' => $request->email,
             'status' => $request->status,
+            'gender' => $request->gender,
+            'born_place' => $request->born_place,
+            'born_date' => $request->born_date,
         ];
 
         // Handle photo upload if provided

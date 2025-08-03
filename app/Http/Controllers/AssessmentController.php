@@ -167,6 +167,7 @@ class AssessmentController extends Controller
         }
 
         // 6. Logging
+        sleep(1);
         AssessmentLog::createLog(
             $periode->id,
             'Calculated and Saved',
@@ -175,11 +176,13 @@ class AssessmentController extends Controller
         );
 
         // 7. Update status assessment period
+        sleep(1);
         $periode->update([
             'status' => 'completed',
         ]);
 
         // 8. Logging
+        sleep(1);
         AssessmentLog::createLog(
             $periode->id,
             'Completed',
@@ -188,6 +191,7 @@ class AssessmentController extends Controller
         );
 
         // 9. Return response
+        sleep(1);
         return response()->json([
             'success' => true,
             'message' => 'Assessment period completed.',

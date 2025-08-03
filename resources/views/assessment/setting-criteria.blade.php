@@ -18,12 +18,17 @@
                             Criteria</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{ $periode->status == 'draft' ? 'disabled' : '' }}" href="{{ route('assessment.assessment-employee', $periode->id) }}"
-                            tabindex="-1" aria-disabled="true">Assessment Process</a>
+                        <a class="nav-link {{ $periode->status == 'draft' ? 'disabled' : '' }}"
+                            href="{{ route('assessment.assessment-employee', $periode->id) }}" tabindex="-1"
+                            aria-disabled="true">Assessment Process</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link {{ $periode->status == 'draft' || $periode->status == 'active' ? 'disabled' : '' }}"
-                            href="{{ route('assessment.results', $periode->id) }}" tabindex="-1" aria-disabled="true">Assessment Results</a>
+                            href="{{ route('assessment.results', $periode->id) }}" tabindex="-1"
+                            aria-disabled="true">Assessment Results</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('assessment.logs', $periode->id) }}">Assessment Logs</a>
                     </li>
                 </ul>
             </div>
@@ -70,8 +75,9 @@
                                                 </td>
                                                 <td>
                                                     @if ($periode->status == 'draft')
-                                                        <input type="number" name="weight[]" class="form-control weight-field"
-                                                            value="{{ $c->weight }}" min="1" max="100" required>
+                                                        <input type="number" name="weight[]"
+                                                            class="form-control weight-field" value="{{ $c->weight }}"
+                                                            min="1" max="100" required>
                                                     @else
                                                         {{ $c->weight }} %
                                                     @endif
@@ -109,7 +115,8 @@
                             @if ($periode->status == 'draft')
                                 <div class="mt-4 text-right">
                                     <button type="button" class="btn btn-secondary" id="saveDraft">Save to Draft</button>
-                                    <button type="button" class="btn btn-primary" id="submitCriteria">Submit Criteria</button>
+                                    <button type="button" class="btn btn-primary" id="submitCriteria">Submit
+                                        Criteria</button>
                                 </div>
                             @endif
                         </form>
