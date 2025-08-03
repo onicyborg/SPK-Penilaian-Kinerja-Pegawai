@@ -172,7 +172,7 @@ sudo chown -R www-data:www-data storage bootstrap/cache
 ### ERD
 ![ERD](https://raw.githubusercontent.com/onicyborg/SPK-Penilaian-Kinerja-Pegawai/main/public/ERD.png)
 
-[Link ERD](https://www.dbdiagram.io/d/688da52fcca18e685ce9d8e3)
+[Link ERD](https://www.dbdiagram.io/d/DB-SPK-Penilaian-Kinerja-Pegawai-688da52fcca18e685ce9d8e3)
 
 ---
 
