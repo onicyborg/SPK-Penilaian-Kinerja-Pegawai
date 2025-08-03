@@ -214,9 +214,9 @@ Setelah normalisasi, skor akhir setiap karyawan dihitung dengan menjumlahkan has
 
 $S_i = \sum_{j=1}^{n} (w_j \times R_{ij})$
 
-- $S_i$ = skor akhir karyawan ke-$i$
-- $w_j$ = bobot kriteria ke-$j$ (dalam desimal, misal 40% = 0.4)
-- $R_{ij}$ = nilai normalisasi karyawan ke-$i$ pada kriteria ke-$j$
+- $S_i$ = skor akhir karyawan ke-$_i$
+- $w_j$ = bobot kriteria ke-$_j$ (dalam desimal, misal 40% = 0.4)
+- $R_{ij}$ = nilai normalisasi karyawan ke-$_i$ pada kriteria ke-$_j$
 - $n$ = jumlah kriteria
 
 ### 3. Ranking
