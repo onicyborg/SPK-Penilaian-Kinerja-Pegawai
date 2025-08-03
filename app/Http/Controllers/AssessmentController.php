@@ -81,7 +81,7 @@ class AssessmentController extends Controller
             // Catat log
             AssessmentLog::createLog(
                 $periode->id,
-                'assessment_saved',
+                'Assessment Saved',
                 'Assessment saved for employee ID: ' . $request->employee_id . ' With Name: ' . Employee::find($request->employee_id)->name,
                 Auth::id()
             );
@@ -177,7 +177,7 @@ class AssessmentController extends Controller
         }
 
         // 6. Logging
-        sleep(1);
+        sleep(0.5);
         AssessmentLog::createLog(
             $periode->id,
             'Calculated and Saved',
@@ -186,13 +186,13 @@ class AssessmentController extends Controller
         );
 
         // 7. Update status assessment period
-        sleep(1);
+        sleep(0.5);
         $periode->update([
             'status' => 'completed',
         ]);
 
         // 8. Logging
-        sleep(1);
+        sleep(0.5);
         AssessmentLog::createLog(
             $periode->id,
             'Completed',
@@ -201,7 +201,7 @@ class AssessmentController extends Controller
         );
 
         // 9. Return response
-        sleep(1);
+        sleep(0.5);
         return response()->json([
             'success' => true,
             'message' => 'Assessment period completed.',
