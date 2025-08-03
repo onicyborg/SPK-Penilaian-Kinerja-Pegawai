@@ -60,7 +60,7 @@
             <!-- Top 3 Performers -->
             <div class="col-lg-6">
                 <div class="card shadow h-100">
-                    <div class="card-header bg-primary text-white">
+                    <div class="card-header">
                         <h5 class="card-title mb-0"><i class="bi bi-trophy-fill me-2"></i>Top 3 Performer</h5>
                     </div>
                     <div class="card-body">
@@ -91,7 +91,7 @@
             <!-- Performance Distribution Chart -->
             <div class="col-lg-6">
                 <div class="card shadow h-100">
-                    <div class="card-header bg-info text-white">
+                    <div class="card-header">
                         <h5 class="card-title mb-0"><i class="bi bi-bar-chart-fill me-2"></i>Distribusi Kinerja (Periode
                             Terakhir)</h5>
                     </div>
@@ -106,38 +106,41 @@
             <!-- Recent Logs -->
             <div class="col-12">
                 <div class="card shadow">
-                    <div class="card-header d-block bg-secondary text-white">
+                    <div class="card-header d-block">
                         <h4 class="card-title"><i class="bi bi-clock-history me-2"></i>Aktivitas Terbaru</h4>
                     </div>
                     <div class="card-body p-0">
-                        <table class="table table-hover mb-0">
-                            <thead class="table-light">
-                                <tr>
-                                    <th>Waktu</th>
-                                    <th>Pengguna</th>
-                                    <th>Periode</th>
-                                    <th>Aksi</th>
-                                    <th>Keterangan</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @forelse($recentLogs as $log)
+                        <div class="table-responsive">
+                            <table class="table table-hover mb-0">
+                                <thead class="table-light">
                                     <tr>
-                                        <td>{{ $log->created_at->format('d M Y H:i') }}</td>
-                                        <td>{{ $log->user->name ?? '-' }}</td>
-                                        <td>{{ $log->assessmentPeriod->name ?? '-' }}</td>
-                                        <td><span
-                                                class="badge badge-{{ $log->getActionBadgeColor() }}">{{ $log->getFormattedAction() }}</span>
-                                        </td>
-                                        <td>{{ $log->description }}</td>
+                                        <th>Waktu</th>
+                                        <th>Pengguna</th>
+                                        <th>Periode</th>
+                                        <th>Aksi</th>
+                                        <th>Keterangan</th>
                                     </tr>
-                                @empty
-                                    <tr>
-                                        <td colspan="5" class="text-center text-muted">Tidak ada aktivitas terbaru</td>
-                                    </tr>
-                                @endforelse
-                            </tbody>
-                        </table>
+                                </thead>
+                                <tbody>
+                                    @forelse($recentLogs as $log)
+                                        <tr>
+                                            <td>{{ $log->created_at->format('d M Y H:i') }}</td>
+                                            <td>{{ $log->user->name ?? '-' }}</td>
+                                            <td>{{ $log->assessmentPeriod->name ?? '-' }}</td>
+                                            <td><span
+                                                    class="badge badge-{{ $log->getActionBadgeColor() }}">{{ $log->getFormattedAction() }}</span>
+                                            </td>
+                                            <td>{{ $log->description }}</td>
+                                        </tr>
+                                    @empty
+                                        <tr>
+                                            <td colspan="5" class="text-center text-muted">Tidak ada aktivitas terbaru
+                                            </td>
+                                        </tr>
+                                    @endforelse
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>

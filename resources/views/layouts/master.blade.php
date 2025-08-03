@@ -43,9 +43,9 @@
         ***********************************-->
         <div class="nav-header">
             <a href="index.html" class="brand-logo">
-                <img class="logo-abbr" src="{{ asset('images/logo.png') }}" alt="">
-                <img class="logo-compact" src="{{ asset('images/logo-text.png') }}" alt="">
-                <img class="brand-title" src="{{ asset('images/logo-text.png') }}" alt="">
+                <img class="logo-abbr" src="{{ asset('images/iconKaPaTrans.png') }}" alt="">
+                <img class="logo-compact" src="{{ asset('images/logoKaPa2.png') }}" alt="">
+                <img class="brand-title" src="{{ asset('images/logoKaPaText.png') }}" alt="">
             </a>
 
             <div class="nav-control">
