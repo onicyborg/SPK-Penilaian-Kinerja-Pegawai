@@ -54,7 +54,7 @@ Route::group(['middleware' => 'auth'],function(){
     Route::delete('manage-assessor/{id}', [\App\Http\Controllers\ManageAssessorController::class, 'destroy'])->name('manage-assessor.destroy');
 
     Route::get('assessment/setting-criteria/{id}', [CriteriaController::class, 'index'])->name('assessment.setting-criteria');
-    Route::post('assessment/setting-criteria/{id}', [CriteriaController::class, 'store'])->name('assessment.setting-criteria');
+    Route::post('assessment/setting-criteria/{id}', [CriteriaController::class, 'store'])->name('assessment.setting-criteria.store');
 
     Route::get('assessment/assessment-employee/{id}', [AssessmentController::class, 'index'])->name('assessment.assessment-employee');
     Route::post('assessment/assessment-employee/{id}/store', [AssessmentController::class, 'store'])->name('assessment.assessment-employee.store');

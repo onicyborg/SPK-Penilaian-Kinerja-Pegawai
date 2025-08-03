@@ -191,7 +191,7 @@
             });
 
             function submitCriteria(type) {
-                let url = "{{ route('assessment.setting-criteria', $periode->id) }}";
+                let url = "{{ route('assessment.setting-criteria.store', $periode->id) }}";
                 let data = $('#criteriaForm').serializeArray();
                 data.push({
                     name: 'action',

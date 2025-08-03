@@ -48,7 +48,6 @@
                             <div class="mt-2">Karyawan Dinilai: <span class="fw-bold">{{ $employeesAssessed }}</span>
                             </div>
                             <div>Kriteria: <span class="fw-bold">{{ $criteriaCount }}</span></div>
-                            <div class="mt-2"><span class="badge badge-success">Selesai</span></div>
                         @else
                             <div class="text-muted">Belum ada periode selesai</div>
                         @endif

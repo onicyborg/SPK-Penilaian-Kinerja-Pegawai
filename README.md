@@ -111,7 +111,7 @@ CREATE DATABASE spk_penilaian_kinerja_karyawan;
 # Jalankan migrasi
 php artisan migrate
 
-# Jalankan seeder (jika tersedia)
+# Jalankan seeder
 php artisan db:seed UserSeeder
 php artisan db:seed EmployeeSeeder
 
@@ -128,9 +128,10 @@ php artisan serve
 ```
 
 Aplikasi akan berjalan di `http://localhost:8000` anda dapat login menggunakan user bawaan yaitu :
-
+```
 Username : admin
 Password : password123
+```
 
 ---
 
