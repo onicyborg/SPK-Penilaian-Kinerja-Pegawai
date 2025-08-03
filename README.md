@@ -201,9 +201,9 @@ Aplikasi ini menggunakan metode Simple Additive Weighting (SAW) untuk menentukan
 ### 1. Normalisasi Matriks Penilaian
 Setiap nilai penilaian karyawan untuk kriteria tertentu dinormalisasi dengan rumus:
 
-
-R_{ij} = \frac{X_{ij}}{X_{j}^{max}}
-
+```
+$R_{ij} = \frac{X_{ij}}{X_{j}^{max}}$
+```
 - $R_{ij}$ = nilai normalisasi untuk karyawan ke-$i$ pada kriteria ke-$j$
 - $X_{ij}$ = nilai asli karyawan ke-$i$ pada kriteria ke-$j$
 - $X_{j}^{max}$ = nilai maksimum seluruh karyawan pada kriteria ke-$j$
@@ -211,9 +211,9 @@ R_{ij} = \frac{X_{ij}}{X_{j}^{max}}
 ### 2. Hitung Skor Akhir
 Setelah normalisasi, skor akhir setiap karyawan dihitung dengan menjumlahkan hasil normalisasi yang dikalikan bobot masing-masing kriteria:
 
-
-S_i = \sum_{j=1}^{n} (w_j \times R_{ij})
-
+```
+$S_i = \sum_{j=1}^{n} (w_j \times R_{ij})$
+```
 - $S_i$ = skor akhir karyawan ke-$i$
 - $w_j$ = bobot kriteria ke-$j$ (dalam desimal, misal 40% = 0.4)
 - $R_{ij}$ = nilai normalisasi karyawan ke-$i$ pada kriteria ke-$j$
