@@ -168,8 +168,8 @@ sudo chown -R www-data:www-data storage bootstrap/cache
 - `assessments` - Data penilaian kinerja
 - `periods` - Periode penilaian
 
-### API Endpoints
-Dokumentasi API akan tersedia setelah implementasi lengkap.
+### ERD
+![ERD](https://www.dbdiagram.io/d/688da52fcca18e685ce9d8e3)
 
 ---
 
