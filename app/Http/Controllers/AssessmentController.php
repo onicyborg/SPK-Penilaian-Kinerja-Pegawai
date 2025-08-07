@@ -30,9 +30,11 @@ class AssessmentController extends Controller
                 return $emp;
             });
         }else{
-            //ambil data employee nya dari saw_result
-            $employees = Employee::all()->map(function ($emp) use ($periode) {
-                $emp->assessment = SawResult::where('assessment_period_id', $periode->id)
+            //ambil data employee yang memiliki saw result di assessment period ini dan join dengan assessmentnya
+            $employees = Employee::whereHas('sawResults', function ($query) use ($periode) {
+                $query->where('assessment_period_id', $periode->id);
+            })->get()->map(function ($emp) use ($periode) {
+                $emp->assessment = EmployeeAssessment::where('assessment_period_id', $periode->id)
                     ->where('employee_id', $emp->id)
                     ->get();
                 return $emp;
@@ -101,7 +103,10 @@ class AssessmentController extends Controller
     {
         $periode = AssessmentPeriod::with('criteria')->findOrFail($assessmentPeriodId);
         $criteria = $periode->criteria;
-        $employees = Employee::all();
+        // select employee yg memiliki employee assessment sesuai dengan assessment period id
+        $employees = Employee::whereHas('employeeAssessments', function ($query) use ($assessmentPeriodId) {
+            $query->where('assessment_period_id', $assessmentPeriodId);
+        })->get();
 
         // 1. Ambil semua skor per employee per kriteria
         $matrix = [];
