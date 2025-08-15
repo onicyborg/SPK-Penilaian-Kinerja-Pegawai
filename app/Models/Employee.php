@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Employee extends Model
 {
@@ -23,7 +24,7 @@ class Employee extends Model
     protected $fillable = [
         'name',
         'position',
-        'department',
+        'department_id',
         'hire_date',
         'phone',
         'email',
@@ -58,6 +59,14 @@ class Employee extends Model
     public function sawResults(): HasMany
     {
         return $this->hasMany(SawResult::class, 'employee_id');
+    }
+
+    /**
+     * Department this employee belongs to
+     */
+    public function department(): BelongsTo
+    {
+        return $this->belongsTo(Department::class, 'department_id');
     }
 
     /**

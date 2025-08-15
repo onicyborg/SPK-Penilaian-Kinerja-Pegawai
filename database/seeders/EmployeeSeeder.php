@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\Employee;
+use App\Models\Department;
 use Illuminate\Support\Str;
 
 class EmployeeSeeder extends Seeder
@@ -237,12 +238,25 @@ class EmployeeSeeder extends Seeder
             ],
         ];
 
+        // Seed departments first (unique names)
+        $departmentNames = array_values(array_unique(array_map(fn ($e) => $e['department'], $employees)));
+        foreach ($departmentNames as $deptName) {
+            Department::firstOrCreate(
+                ['name' => $deptName],
+                ['id' => Str::uuid()]
+            );
+        }
+
+        // Build name => id map
+        $deptMap = Department::whereIn('name', $departmentNames)->pluck('id', 'name');
+
+        // Seed employees with department_id
         foreach ($employees as $employee) {
             Employee::create([
                 'id' => Str::uuid(),
                 'name' => $employee['name'],
                 'position' => $employee['position'],
-                'department' => $employee['department'],
+                'department_id' => $deptMap[$employee['department']] ?? null,
                 'hire_date' => $employee['hire_date'],
                 'phone' => $employee['phone'],
                 'email' => $employee['email'],

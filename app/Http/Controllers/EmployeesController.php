@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Employee;
+use App\Models\Department;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 
@@ -11,8 +12,9 @@ class EmployeesController extends Controller
 {
     public function index()
     {
-        $employees = Employee::all();
-        return view('master-data-karyawan', compact('employees'));
+        $employees = Employee::with('department')->get();
+        $departments = Department::all();
+        return view('master-data-karyawan', compact('employees', 'departments'));
     }
 
     public function store(Request $request)
@@ -20,7 +22,7 @@ class EmployeesController extends Controller
         $request->validate([
             'name' => 'required',
             'position' => 'required',
-            'department' => 'required',
+            'department' => 'required|exists:departments,id',
             'hire_date' => 'required',
             'phone' => 'required',
             'email' => 'required|email',
@@ -38,7 +40,7 @@ class EmployeesController extends Controller
         Employee::create([
             'name' => $request->name,
             'position' => $request->position,
-            'department' => $request->department,
+            'department_id' => $request->department,
             'hire_date' => $request->hire_date,
             'phone' => $request->phone,
             'email' => $request->email,
@@ -57,7 +59,7 @@ class EmployeesController extends Controller
         $request->validate([
             'name' => 'required',
             'position' => 'required',
-            'department' => 'required',
+            'department' => 'required|exists:departments,id',
             'hire_date' => 'required',
             'phone' => 'required',
             'email' => 'required|email',
@@ -73,7 +75,7 @@ class EmployeesController extends Controller
         $data = [
             'name' => $request->name,
             'position' => $request->position,
-            'department' => $request->department,
+            'department_id' => $request->department,
             'hire_date' => $request->hire_date,
             'phone' => $request->phone,
             'email' => $request->email,
@@ -103,7 +105,7 @@ class EmployeesController extends Controller
 
     public function getEmployee($id)
     {
-        $employee = Employee::findOrFail($id);
+        $employee = Employee::with('department')->findOrFail($id);
         return response()->json($employee);
     }
 

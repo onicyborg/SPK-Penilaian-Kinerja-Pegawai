@@ -7,6 +7,7 @@ use App\Http\Controllers\EmployeesController;
 use App\Http\Controllers\CriteriaController;
 use App\Http\Controllers\AssessmentResultController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DepartmentController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -45,6 +46,12 @@ Route::group(['middleware' => 'auth'],function(){
     Route::get('/master-data-karyawan/{id}', [EmployeesController::class, 'getEmployee'])->name('master-data-karyawan.get');
     Route::put('/master-data-karyawan/{id}', [EmployeesController::class, 'update'])->name('master-data-karyawan.update');
     Route::delete('/master-data-karyawan/{id}', [EmployeesController::class, 'destroy'])->name('master-data-karyawan.delete');
+
+    // Department CRUD
+    Route::post('/departments', [DepartmentController::class, 'store'])->name('departments.store');
+    Route::get('/departments/{id}', [DepartmentController::class, 'get'])->name('departments.get');
+    Route::put('/departments/{id}', [DepartmentController::class, 'update'])->name('departments.update');
+    Route::delete('/departments/{id}', [DepartmentController::class, 'destroy'])->name('departments.destroy');
 
     // CRUD Assessor
     Route::get('manage-assessor', [\App\Http\Controllers\ManageAssessorController::class, 'index'])->name('manage-assessor.index');

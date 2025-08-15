@@ -13,99 +13,168 @@
 
 @section('content')
     <div class="container-fluid">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="card">
-                    <div class="card-header">
-                        <h4 class="card-title">Manajemen Karyawan</h4>
-                        <div class="card-header-right">
-                            <button type="button" class="btn btn-primary" data-toggle="modal"
-                                data-target="#addEmployeeModal">
-                                <i class="fa fa-plus"></i> Tambah Karyawan
-                            </button>
+        <!-- Tabs -->
+        <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" data-toggle="tab" href="#tab-employees" role="tab">Karyawan</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#tab-departments" role="tab">Department</a>
+            </li>
+        </ul>
+
+        <div class="tab-content pt-3">
+            <!-- Employees Tab -->
+            <div class="tab-pane fade show active" id="tab-employees" role="tabpanel">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">Manajemen Karyawan</h4>
+                                <div class="card-header-right">
+                                    <button type="button" class="btn btn-primary" data-toggle="modal"
+                                        data-target="#addEmployeeModal">
+                                        <i class="fa fa-plus"></i> Tambah Karyawan
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table id="masterEmployee" class="display" style="width:100%">
+                                        <thead>
+                                            <tr>
+                                                <th>Photo</th>
+                                                <th>Nama</th>
+                                                <th>Posisi</th>
+                                                <th>Departemen</th>
+                                                <th>Jenis Kelamin</th>
+                                                <th>TTL</th>
+                                                <th>Hire Date</th>
+                                                <th>Phone</th>
+                                                <th>Email</th>
+                                                <th>Status</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($employees as $employee)
+                                                <tr>
+                                                    <td>
+                                                        @if ($employee->photo != null)
+                                                            <img src="{{ asset('storage/' . $employee->photo) }}" alt="Photo"
+                                                                class="rounded-circle img-fluid" style="width: 50px; height: 50px;">
+                                                        @else
+                                                            <img src="{{ asset('images/employee.png') }}" alt="Photo"
+                                                                class="rounded-circle img-fluid" style="width: 50px; height: 50px;">
+                                                        @endif
+                                                    </td>
+                                                    <td>{{ $employee->name }}</td>
+                                                    <td>{{ $employee->position }}</td>
+                                                    <td>{{ optional($employee->department)->name ?? '-' }}</td>
+                                                    <td>{{ $employee->gender == 'male' ? 'Laki-laki' : ($employee->gender == 'female' ? 'Perempuan' : '-') }}
+                                                    </td>
+                                                    <td>
+                                                        @if ($employee->born_date && $employee->born_place)
+                                                            {{ $employee->born_place }}, {{ \Carbon\Carbon::parse($employee->born_date)->format('d-m-Y') }}
+                                                        @else
+                                                            -
+                                                        @endif
+                                                    </td>
+                                                    <td>{{ $employee->hire_date }}</td>
+                                                    <td>{{ $employee->phone }}</td>
+                                                    <td>{{ $employee->email }}</td>
+                                                    <td>
+                                                        @if ($employee->status == 'active')
+                                                            <span class="badge badge-success">Active</span>
+                                                        @else
+                                                            <span class="badge badge-danger">Inactive</span>
+                                                        @endif
+                                                    </td>
+                                                    <td>
+                                                        <button type="button" class="btn btn-primary btn-sm"
+                                                            onclick="editEmployee('{{ $employee->id }}')">
+                                                            <i class="fa fa-edit"></i>
+                                                        </button>
+                                                        <button type="button" class="btn btn-danger btn-sm"
+                                                            onclick="deleteEmployee('{{ $employee->id }}', '{{ $employee->name }}')">
+                                                            <i class="fa fa-trash"></i>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <th>Photo</th>
+                                                <th>Nama</th>
+                                                <th>Posisi</th>
+                                                <th>Departemen</th>
+                                                <th>Jenis Kelamin</th>
+                                                <th>TTL</th>
+                                                <th>Hire Date</th>
+                                                <th>Phone</th>
+                                                <th>Email</th>
+                                                <th>Status</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="card-body">
-                        <div class="table-responsive">
-                            <table id="masterEmployee" class="display" style="width:100%">
-                                <thead>
-                                    <tr>
-                                        <th>Photo</th>
-                                        <th>Nama</th>
-                                        <th>Posisi</th>
-                                        <th>Departemen</th>
-                                        <th>Jenis Kelamin</th>
-                                        <th>TTL</th>
-                                        <th>Hire Date</th>
-                                        <th>Phone</th>
-                                        <th>Email</th>
-                                        <th>Status</th>
-                                        <th>Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($employees as $employee)
-                                        <tr>
-                                            <td>
-                                                @if ($employee->photo != null)
-                                                    <img src="{{ asset('storage/' . $employee->photo) }}" alt="Photo"
-                                                        class="rounded-circle img-fluid" style="width: 50px; height: 50px;">
-                                                @else
-                                                    <img src="{{ asset('images/employee.png') }}" alt="Photo"
-                                                        class="rounded-circle img-fluid" style="width: 50px; height: 50px;">
-                                                @endif
-                                            </td>
-                                            <td>{{ $employee->name }}</td>
-                                            <td>{{ $employee->position }}</td>
-                                            <td>{{ $employee->department }}</td>
-                                            <td>{{ $employee->gender == 'male' ? 'Laki-laki' : ($employee->gender == 'female' ? 'Perempuan' : '-') }}
-                                            </td>
-                                            <td>
-                                                @if ($employee->born_date && $employee->born_place)
-                                                    {{ $employee->born_place }}, {{ \Carbon\Carbon::parse($employee->born_date)->format('d-m-Y') }}
-                                                @else
-                                                    -
-                                                @endif
-                                            </td>
-                                            <td>{{ $employee->hire_date }}</td>
-                                            <td>{{ $employee->phone }}</td>
-                                            <td>{{ $employee->email }}</td>
-                                            <td>
-                                                @if ($employee->status == 'active')
-                                                    <span class="badge badge-success">Active</span>
-                                                @else
-                                                    <span class="badge badge-danger">Inactive</span>
-                                                @endif
-                                            </td>
-                                            <td>
-                                                <button type="button" class="btn btn-primary btn-sm"
-                                                    onclick="editEmployee('{{ $employee->id }}')">
-                                                    <i class="fa fa-edit"></i>
-                                                </button>
-                                                <button type="button" class="btn btn-danger btn-sm"
-                                                    onclick="deleteEmployee('{{ $employee->id }}', '{{ $employee->name }}')">
-                                                    <i class="fa fa-trash"></i>
-                                                </button>
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                                <tfoot>
-                                    <tr>
-                                        <th>Photo</th>
-                                        <th>Nama</th>
-                                        <th>Posisi</th>
-                                        <th>Departemen</th>
-                                        <th>Jenis Kelamin</th>
-                                        <th>TTL</th>
-                                        <th>Hire Date</th>
-                                        <th>Phone</th>
-                                        <th>Email</th>
-                                        <th>Status</th>
-                                        <th>Action</th>
-                                    </tr>
-                                </tfoot>
-                            </table>
+                </div>
+            </div>
+
+            <!-- Departments Tab -->
+            <div class="tab-pane fade" id="tab-departments" role="tabpanel">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">Manajemen Department</h4>
+                                <div class="card-header-right">
+                                    <button type="button" class="btn btn-primary" data-toggle="modal"
+                                        data-target="#addDepartmentModal">
+                                        <i class="fa fa-plus"></i> Tambah Department
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table id="masterDepartment" class="display" style="width:100%">
+                                        <thead>
+                                            <tr>
+                                                <th>Nama Department</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($departments as $department)
+                                                <tr>
+                                                    <td>{{ $department->name }}</td>
+                                                    <td>
+                                                        <button type="button" class="btn btn-primary btn-sm"
+                                                            onclick="editDepartment('{{ $department->id }}')">
+                                                            <i class="fa fa-edit"></i>
+                                                        </button>
+                                                        <button type="button" class="btn btn-danger btn-sm"
+                                                            onclick="deleteDepartment('{{ $department->id }}', '{{ $department->name }}')">
+                                                            <i class="fa fa-trash"></i>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <th>Nama Department</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -170,27 +239,10 @@
                                 <div class="form-group">
                                     <label for="department">Departemen <span class="text-danger">*</span></label>
                                     <select class="form-control" id="department" name="department" required>
-                                        <option value="">Pilih Departemen</option>
-                                        <option value="Human Resources">Human Resources</option>
-                                        <option value="Finance">Finance</option>
-                                        <option value="Accounting">Accounting</option>
-                                        <option value="Marketing">Marketing</option>
-                                        <option value="Sales">Sales</option>
-                                        <option value="IT">IT</option>
-                                        <option value="Production">Production</option>
-                                        <option value="Quality Control">Quality Control</option>
-                                        <option value="Logistics">Logistics</option>
-                                        <option value="Procurement">Procurement</option>
-                                        <option value="Legal">Legal</option>
-                                        <option value="Research and Development">Research and Development</option>
-                                        <option value="Customer Service">Customer Service</option>
-                                        <option value="General Affairs">General Affairs</option>
-                                        <option value="Business Development">Business Development</option>
-                                        <option value="Internal Audit">Internal Audit</option>
-                                        <option value="Engineering">Engineering</option>
-                                        <option value="HSE">HSE (Health, Safety, Environment)</option>
-                                        <option value="Warehouse">Warehouse</option>
-                                        <option value="PPIC">PPIC (Production Planning and Inventory Control)</option>
+                                        <option selected disabled>Pilih Departemen</option>
+                                        @foreach ($departments as $department)
+                                            <option value="{{ $department->id }}">{{ $department->name }}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>
@@ -237,6 +289,64 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
                         <button type="submit" class="btn btn-primary">Simpan</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Tambah Department -->
+    <div class="modal fade" id="addDepartmentModal" tabindex="-1" role="dialog" aria-labelledby="addDepartmentModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addDepartmentModalLabel">Tambah Department</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="{{ route('departments.store') }}" method="POST">
+                    @csrf
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="dept_name">Nama Department <span class="text-danger">*</span></label>
+                            <input type="text" name="name" id="dept_name" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                        <button type="submit" class="btn btn-primary">Simpan</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Edit Department -->
+    <div class="modal fade" id="editDepartmentModal" tabindex="-1" role="dialog" aria-labelledby="editDepartmentModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editDepartmentModalLabel">Edit Department</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form id="editDepartmentForm">
+                    @csrf
+                    @method('PUT')
+                    <input type="hidden" id="edit_department_id" name="id">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="edit_dept_name">Nama Department <span class="text-danger">*</span></label>
+                            <input type="text" name="name" id="edit_dept_name" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                        <button type="submit" class="btn btn-primary">Update</button>
                     </div>
                 </form>
             </div>
@@ -305,27 +415,10 @@
                                 <div class="form-group">
                                     <label for="edit_department">Departemen <span class="text-danger">*</span></label>
                                     <select class="form-control" id="edit_department" name="department" required>
-                                        <option value="">Pilih Departemen</option>
-                                        <option value="Human Resources">Human Resources</option>
-                                        <option value="Finance">Finance</option>
-                                        <option value="Accounting">Accounting</option>
-                                        <option value="Marketing">Marketing</option>
-                                        <option value="Sales">Sales</option>
-                                        <option value="IT">IT</option>
-                                        <option value="Production">Production</option>
-                                        <option value="Quality Control">Quality Control</option>
-                                        <option value="Logistics">Logistics</option>
-                                        <option value="Procurement">Procurement</option>
-                                        <option value="Legal">Legal</option>
-                                        <option value="Research and Development">Research and Development</option>
-                                        <option value="Customer Service">Customer Service</option>
-                                        <option value="General Affairs">General Affairs</option>
-                                        <option value="Business Development">Business Development</option>
-                                        <option value="Internal Audit">Internal Audit</option>
-                                        <option value="Engineering">Engineering</option>
-                                        <option value="HSE">HSE (Health, Safety, Environment)</option>
-                                        <option value="Warehouse">Warehouse</option>
-                                        <option value="PPIC">PPIC (Production Planning and Inventory Control)</option>
+                                        <option selected disabled>Pilih Departemen</option>
+                                        @foreach ($departments as $department)
+                                            <option value="{{ $department->id }}">{{ $department->name }}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>
@@ -390,15 +483,9 @@
     <script>
         (function($) {
             "use strict"
-            var table2 = $('#masterEmployee').DataTable({
-                createdRow: function(row, data, index) {
-                    $(row).addClass('selected')
-                },
+            var tableEmployee = $('#masterEmployee').DataTable();
 
-                "scrollY": "60vh",
-                "scrollCollapse": true,
-                "paging": false
-            });
+            var tableDepartment = $('#masterDepartment').DataTable();
 
         })(jQuery);
 
@@ -413,7 +500,7 @@
                     $('#edit_employee_id').val(response.id);
                     $('#edit_name').val(response.name);
                     $('#edit_position').val(response.position);
-                    $('#edit_department').val(response.department);
+                    $('#edit_department').val(response.department.id);
                     $('#edit_gender').val(response.gender);
                     $('#edit_born_place').val(response.born_place);
                     if (response.born_date) {
@@ -520,6 +607,70 @@
                         text: errorMessage,
                         confirmButtonText: 'OK'
                     });
+                }
+            });
+        });
+
+        // Department: edit
+        function editDepartment(id) {
+            $.ajax({
+                url: '{{ route('departments.get', ':id') }}'.replace(':id', id),
+                type: 'GET',
+                success: function(response) {
+                    $('#edit_department_id').val(response.id);
+                    $('#edit_dept_name').val(response.name);
+                    $('#editDepartmentModal').modal('show');
+                },
+                error: function() {
+                    Swal.fire({ icon: 'error', title: 'Error!', text: 'Gagal mengambil data department' });
+                }
+            });
+        }
+
+        // Department: delete
+        function deleteDepartment(id, name) {
+            Swal.fire({
+                title: 'Hapus Department',
+                text: `Apakah Anda yakin ingin menghapus department ${name}?`,
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Ya, Hapus!',
+                cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.value) {
+                    var form = $('<form>', {
+                        'method': 'POST',
+                        'action': `{{ route('departments.destroy', ':id') }}`.replace(':id', id)
+                    });
+                    form.append($('<input>', { 'type': 'hidden', 'name': '_token', 'value': '{{ csrf_token() }}' }));
+                    form.append($('<input>', { 'type': 'hidden', 'name': '_method', 'value': 'DELETE' }));
+                    $('body').append(form);
+                    form.submit();
+                }
+            });
+        }
+
+        // Department: submit edit
+        $('#editDepartmentForm').on('submit', function(e) {
+            e.preventDefault();
+            var deptId = $('#edit_department_id').val();
+            var formData = $(this).serialize();
+            $.ajax({
+                url: '{{ route('departments.update', ':id') }}'.replace(':id', deptId),
+                type: 'POST',
+                data: formData,
+                success: function() {
+                    $('#editDepartmentModal').modal('hide');
+                    Swal.fire({ icon: 'success', title: 'Berhasil!', text: 'Department berhasil diupdate!', timer: 2000, timerProgressBar: true })
+                        .then(() => { location.reload(); });
+                },
+                error: function(xhr) {
+                    var errors = xhr.responseJSON?.errors;
+                    var msg = 'Terjadi kesalahan';
+                    if (errors) { msg = Object.values(errors).map(a => a[0]).join('\n'); }
+                    Swal.fire({ icon: 'error', title: 'Error!', text: msg });
                 }
             });
         });
