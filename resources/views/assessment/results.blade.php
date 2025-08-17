@@ -39,7 +39,7 @@
                                 <span class="accordion__header--text">
                                     <span class="badge badge-primary me-2" style="font-size:1.1em;"><i
                                             class="bi bi-trophy-fill"></i> {{ $result->rank }}</span>
-                                    <span><b>{{ $result->employee->name }}</b> ({{ $result->employee->department }} -
+                                    <span><b>{{ $result->employee->name }}</b> ({{ $result->employee->department->name }} -
                                         {{ $result->employee->position }})</span>
                                 </span>
                                 <span class="accordion__header--indicator" style="display:none;"></span>

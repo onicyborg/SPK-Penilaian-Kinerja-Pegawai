@@ -54,7 +54,7 @@
                                         <tr>
                                             <td>{{ $employee->name }}</td>
                                             <td>{{ $employee->position }}</td>
-                                            <td>{{ $employee->department }}</td>
+                                            <td>{{ $employee->department->name }}</td>
                                             <td>
                                                 @if (isset($employee->assessment) && count($employee->assessment) > 0)
                                                     <span class="badge badge-success">Saved</span>
@@ -175,7 +175,7 @@
                 html += '<table class="table table-bordered">';
                 html += '<tr><th>Name</th><td>' + employee.name + '</td></tr>';
                 html += '<tr><th>Position</th><td>' + employee.position + '</td></tr>';
-                html += '<tr><th>Department</th><td>' + employee.department + '</td></tr>';
+                html += '<tr><th>Department</th><td>' + employee.department.name + '</td></tr>';
                 html += '<tr><th>Hire Date</th><td>' + (employee.hire_date ? new Intl.DateTimeFormat(
                     'id-ID', {
                         weekday: 'long',
@@ -201,6 +201,7 @@
             $('#assessmentModal').on('show.bs.modal', function(event) {
                 var button = $(event.relatedTarget);
                 var employee = button.data('employee');
+                var status = @json($periode->status);
                 $('#assessment_employee_id').val(employee.id);
                 // Reset all selects to empty
                 $('#assessmentModal select[name^="score["]').val("");
@@ -209,6 +210,9 @@
                     employee.assessment.forEach(function(item) {
                         var select = $('#assessmentModal select[name="score[' + item.criteria_id +
                             ']"]');
+                        if (status == 'completed') {
+                            select.prop('disabled', true);
+                        }
                         if (select.length) {
                             select.val(item.score);
                         }
