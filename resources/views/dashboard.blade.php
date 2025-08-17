@@ -74,7 +74,7 @@
                                             <div>
                                                 <div class="fw-bold">{{ $performer->employee->name }}</div>
                                                 <small class="text-muted">{{ $performer->employee->position }} -
-                                                    {{ $performer->employee->department }}</small>
+                                                    {{ $performer->employee->department->name }}</small>
                                             </div>
                                         </div>
                                         <span
